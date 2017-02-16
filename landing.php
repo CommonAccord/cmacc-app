@@ -11,9 +11,7 @@ $dir=LANDING_MD;
 
 $document = `perl $lib_path/parser.pl $path/$dir`;
 
-$minDocLength = 1;
-
-if (strlen($document) > $minDocLength){ 
+if (strlen($document) > 1){ 
  
   echo $document;}
  else {
