@@ -17,5 +17,5 @@ The CommonAccord app as coded by Primavera De Filippi can be used by:
 
 DEPENDENCIES:
 
-cmacc-app
+cmacc-host
 
