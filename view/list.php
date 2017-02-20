@@ -25,9 +25,15 @@ echo "<center><a href=" . URLFORDOCSINREPO . $dir.">Github</a> &emsp;</div>";
 $files = scandir($path.$dir);
 
 if(file_exists($path.$dir . 'README.md')) {
-echo "<div class='includers'>"; 
-   include $path.$dir . 'README.md';
-echo "</div>";
+
+echo "<div class='includers'>";
+
+$readme= file_get_contents($path.$dir . 'README.md');
+
+$readme = str_replace(array("\n\r\n\r", "\n\n", "\r\r"), '<br>', $readme);
+
+echo "$readme </div>";
+
 }
 
 if(file_exists($path.$dir . 'list.html')) {
