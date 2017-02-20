@@ -26,13 +26,13 @@ $files = scandir($path.$dir);
 
 if(file_exists($path.$dir . 'README.md')) {
 
-echo "<div class='includers'>";
+echo "<div>";
 
 $readme= file_get_contents($path.$dir . 'README.md');
 
 $readme = str_replace(array("\n\r\n\r", "\n\n", "\r\r"), '<br>', $readme);
 
-echo "$readme </div>";
+echo "<table><tr><td valign='top'><b>README.md:</b></td><td> &emsp; </td><td>$readme </td></tr></table></div>";
 
 }
 
