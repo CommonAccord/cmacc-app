@@ -90,9 +90,9 @@ my %seen; my @arr = $output=~/\{([^}]+)\}/g;
 
 # select one:
 
-# print "$_=\n" foreach @arr;
+print "$_=\n" foreach @arr;
 
-print "$_=<a href='#$_.Sec' class='definedterm'>$_</a>\n" foreach @arr;
+# print "$_=<a href='#$_.Sec' class='definedterm'>$_</a>\n" foreach @arr;
 
 
 #clean up the temporary files (remote fetching)

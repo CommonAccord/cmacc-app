@@ -90,8 +90,8 @@ my %seen; my @arr = $output=~/\{([^}]+)\}/g;
 
 #comment the first and uncomment the second to make a list of defined terms
 
-print "$_=<br><br>" foreach @arr;
-#print "$_=\{d-\}$_\{-d\}<br><br>" foreach @arr;
+#print "$_=<br><br>" foreach @arr;
+print "$_=\{d-\}$_\{-d\}<br><br>" foreach @arr;
 
 print "</p></div>";
 #clean up the temporary files (remote fetching)
