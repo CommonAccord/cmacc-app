@@ -24,17 +24,6 @@ echo "<center><a href=" . URLFORDOCSINREPO . $dir.">Github</a> &emsp;</div>";
 
 $files = scandir($path.$dir);
 
-if(file_exists($path.$dir . 'README.md')) {
-
-echo "<div>";
-
-$readme= file_get_contents($path.$dir . 'README.md');
-
-$readme = str_replace(array("\n\r\n\r", "\n\n", "\r\r"), '<br>', $readme);
-
-echo "<table><tr><td valign='top'><b>README.md:</b></td><td> &emsp; </td><td>$readme </td></tr></table></div>";
-
-}
 
 if(file_exists($path.$dir . 'list.html')) {
 echo "<div class='includers'>"; 
@@ -58,6 +47,19 @@ foreach($files as $f) {
         }
 }
 echo "</div></div>";
+
+if(file_exists($path.$dir . 'README.md')) {
+
+echo "<div>";
+
+$readme= file_get_contents($path.$dir . 'README.md');
+
+$readme = str_replace(array("\n\r\n\r", "\n\n", "\r\r"), '<br>', $readme);
+
+echo "<table><tr><td valign='top'><b>README.md:</b></td><td> &emsp; </td><td>$readme </td></tr></table></div>";
+
+}
+
 ?>
 
 
