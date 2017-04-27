@@ -25,5 +25,7 @@ echo "<a href=index.php?action=ipld&file=" .$dir.">". IPLD_TAB_MESSAGE
 echo "<a href=index.php?action=jaw&file=" .$dir.">". JAW_TAB_MESSAGE
 ."</a> &emsp; ";
 
+echo "<b><a href=index.php?action=visual&file=" .$dir."> Visual</a></b> &emsp; ";
+
 
 ?>

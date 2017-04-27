@@ -125,11 +125,6 @@ case 'jaw':
         include('./vendor/cmacc-app/view/print.php');
         break;
 
-   case 'kv':
-
-        include('./vendor/cmacc-app/view/print-kvs.php');
-        break;
-
 
    case 'raw':
 
@@ -180,6 +175,12 @@ case 'jaw':
             echo "</div></div>";
         }
         break;
+
+   case 'visual':
+
+        include('./vendor/cmacc-app/view/visual.php');
+        break;
+
 
     default:
         include($_REQUEST['action'] . '.php');
