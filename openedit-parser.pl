@@ -90,10 +90,21 @@ my %seen; my @arr = $output=~/\{([^}]+)\}/g;
 
 # select one:
 
+# Key=
+
 print "$_=\n" foreach @arr;
 
-# print "$_=<a href='#$_.Sec' class='definedterm'>$_</a>\n" foreach @arr;
+# Key=Key;
 
+# print "$_=$_\n" foreach @arr;
+
+# To make a new DefinedTerm, with a hyperlink to the definition:
+
+# print "$_=<a href='#Def.$_.Sec' class='definedterm'>$_</a>\n" foreach @arr;
+
+# to mark the place a defined term is defined inline.
+
+# print "$_=\{_" . substr($_, 4, -4) ."\}\n" foreach @arr;
 
 #clean up the temporary files (remote fetching)
 `rm $_` for values %remote;
