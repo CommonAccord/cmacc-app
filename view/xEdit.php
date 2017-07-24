@@ -435,7 +435,7 @@ if (strlen($document) > $minDocLength) {
         $("#relatedDocument").on('change', function () {
             var file = $(this).val();
             if (file !== "<?= $dir;?>") {
-                window.location.href = "/index.php?action=xEdit&file=" + file;
+                window.location.href = "index.php?action=xEdit&file=" + file;
             }
         })
 
