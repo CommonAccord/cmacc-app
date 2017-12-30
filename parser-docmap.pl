@@ -14,6 +14,8 @@ my $remote_cnt = 0;
 my $path = "./Doc/";
 my $orig;
 
+my $filelist = "";
+
 sub parse {
 	
 	my($file,$root,$part) = @_; my $f;
@@ -59,9 +61,12 @@ sub parse_root {
 			else {
 				$root = parse($path.$what, $newfield || $field, $part);
 			}
+	$filelist = $filelist . "<br><br>[" . $what. "]";
+
 			return $root if $root;
 		}
-	}
+	      }
+	
 	return $root;
 
 } 
@@ -70,49 +75,21 @@ sub expand_fields  {
 
 	my($f,$field,$part) = @_;
 
-	foreach( $$field =~ /\{([^}]+)\}/g ) {
-		my $ex = $_;
-		my $ox = $part ? $part . $ex : $ex;
-		my $value = parse($orig, $ox);
-		$$field =~ s/\{\Q$ex\E\}/$value/gg if $value;
-	}
-} 
 
+
+foreach( $$field =~ /\{([^}]+)\}/g ) {
+       my $ex = $_;
+       my $ox = $part ? $part . $ex : $ex;
+
+       my $value = parse($orig, $ox);      
+       my $spanvalue = "<span title=\"" . $ox . "\" id=\"" . $ox . "\" >". $value . "</span>";
+       $$field =~ s/\{\Q$ex\E\}/$spanvalue/gg if $value;
+     }
+      }
 
 
 my $output  = parse($ARGV[0], "Model.Root");
-
-# print $output;
-
-# XXX FIX ME XXX This is horrible - but  I'm just dead tired  :(
-my %seen; my @arr = $output=~/\{([^}]+)\}/g;
-@arr = grep { ! $seen{$_}++ } @arr;
-
-# select one:
-
-# Key=
-
-# print "$_=\n" foreach @arr;
-
-# Key=Key
-
-print "$_=$_\n" foreach @arr;
-
-# To make a new DefinedTerm, with a hyperlink to the definition:
-
-# print "$_=<a href='#Def.$_.sec' class='definedterm'>$_</a>\n" foreach @arr;
-
-# To make a new Xnum, with a hyperlink to the Section:
-
-# print "$_.Xnum=<a href='#$_.Sec' class='xref'></a>\n" foreach @arr;
-
-# To make a new Param, with a hyperlink to the definition:
-
-# print "$_=<span class='param'>??$_??</span>\n" foreach @arr;
-
-# to mark the place a defined term is defined inline.
-
-# print "$_=\{_" . substr($_, 4, -4) ."\}\n" foreach @arr;
+print $output . "\n\n" . $filelist;
 
 #clean up the temporary files (remote fetching)
 `rm $_` for values %remote;

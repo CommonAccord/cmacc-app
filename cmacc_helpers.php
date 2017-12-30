@@ -98,12 +98,55 @@ switch ($_REQUEST['action']) {
 
         break;
 
+
+
+ case 'javaccord':
+
+        if (isset($_REQUEST['submit'])) {
+
+            $file_name = $path . $dir;
+
+            if (file_exists($file_name)) {
+
+                if (is_writeable($file_name)) {
+                    $fp = fopen($file_name, "w");
+                    $data = $_REQUEST['newcontent'];
+                    $data = preg_replace('/\r\n/', "\n", $data);
+                    $data = trim($data);
+                    fwrite($fp, $data);
+                    fclose($fp);
+                } else {
+                    print '<span style="color: red">ERROR: File ' . $dir . ' is not write able.</style>';
+                }
+            } else {
+                print '<span style="color: red">ERROR: File ' . $dir . ' does not exists.</style>';
+            }
+        }
+
+        $content = file_get_contents($path . $dir, FILE_USE_INCLUDE_PATH);
+        $contents = explode("\n", $content);
+        $rootdir = pathinfo($dir);
+        $filenameX = basename($dir);
+
+        //source.php includes the formatting for the table that displays the components of a document
+        include("./vendor/cmacc-app/view/javaccord.php");
+
+        break;
+
+
+	
 case 'jaw':
 
         include('./vendor/cmacc-app/view/jaw.php');
         break;
 
-    case 'list':
+
+case 'cicero':
+
+        include('./vendor/cmacc-app/view/cicero.php');
+        break;
+
+case 'list':
 
         include('./vendor/cmacc-app/view/list.php');
         break;
@@ -170,6 +213,11 @@ case 'jaw':
    case 'visual':
 
         include('./vendor/cmacc-app/view/visual.php');
+        break;
+
+    case 'xray':
+
+        include('./vendor/cmacc-app/view/xray.php');
         break;
 
 
