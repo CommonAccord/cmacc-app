@@ -23,23 +23,13 @@ echo "<center><a href=" . URLFORDOCSINREPO . $dir.">Github</a> &emsp;</div>";
 } 
 
 $files = scandir($path.$dir);
-# playing whackamole with bot that overwrites "list.html".
-if (file_exists($path.$dir . 'listintro.html'))
- {
-  echo "<div>"; 
-  include $path.$dir . 'listintro.html';
- }  
- else
- {
+
 
 if(file_exists($path.$dir . 'list.html')) {
-  echo "<div>"; 
+echo "<div class='includers'>"; 
    include $path.$dir . 'list.html';
-# removing the edit button, because a bot is hitting /G/list.html
-# echo "<br><a href='index.php?action=edit&file=$dir" ;
-# echo "list.html'>(Edit)</a></div>";
-    }
- }
+echo "</div>";
+}
 
 echo '<div class="listings">';
 echo "<div id='content-list'>";
@@ -51,7 +41,7 @@ foreach($files as $f) {
                 }
         }
         else {
-                if( !( ($f == 'list.html') || ($f == 'listintro.html') || ($f == 'README.md') || preg_match('/^\./', $f) ) ) {
+                if( !( ($f == 'list.html') || ($f == 'README.md') || preg_match('/^\./', $f) ) ) {
                         echo "<br><a href=$_SERVER[PHP_SELF]?action=source&file=$dir$f id='$f' title='$f'><img height=20 src='" . ASSETS_PATH . "/play.png'> $f</a>";
                 }
         }
